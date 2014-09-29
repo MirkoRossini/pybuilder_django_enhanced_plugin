@@ -49,7 +49,7 @@ def set_properties(project):
                          'Development Status :: 4 - Beta',
                          'Environment :: Console',
                          'Intended Audience :: Developers',
-                         'License :: OSI Approved :: BSD Software License',
+                         'License :: OSI Approved :: BSD License',
                          'Topic :: Software Development :: Build Tools',
                          'Topic :: Software Development :: Quality Assurance',
                          'Topic :: Software Development :: Testing'])

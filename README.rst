@@ -4,7 +4,7 @@ PyBuilder Django Enhanced Plugin
 Plugin for pybuilder providing some useful tasks for django development
 
 How to use pybuilder_django_enhanced_plugin
-----------------------------------
+-------------------------------------------
 
 Add plugin dependency to your `build.py`::
 
