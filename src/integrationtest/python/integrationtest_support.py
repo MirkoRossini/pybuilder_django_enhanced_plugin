@@ -35,10 +35,17 @@ from pybuilder.reactor import Reactor
 
 class IntegrationTestSupport(unittest.TestCase):
     def setUp(self):
+        self.set_tmp_dir()
+
+    def set_tmp_dir(self):
         self.tmp_directory = tempfile.mkdtemp(prefix="IntegrationTestSupport")
+        print(self.tmp_directory)
 
     def tearDown(self):
         return
+        self.rm_tmp_dir()
+
+    def rm_tmp_dir(self):
         if self.tmp_directory and os.path.exists(self.tmp_directory):
             shutil.rmtree(self.tmp_directory)
 
