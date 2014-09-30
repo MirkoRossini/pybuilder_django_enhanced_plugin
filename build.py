@@ -21,7 +21,7 @@ authors = [Author("Mirko Rossini", "mirko.rossini@ymail.com"),
            ]
 url = "https://github.com/MirkoRossini/pybuilder_django_enhanced_plugin"
 license = "BSD License"
-version = "0.0.1"
+version = "0.0.2"
 
 
 @init
