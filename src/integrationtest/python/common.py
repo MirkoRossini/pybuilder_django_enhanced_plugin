@@ -1,4 +1,5 @@
 __author__ = 'Mirko Rossini'
+
 BUILD_FILE_TEMPLATE = """
 from pybuilder.core import use_plugin, init
 
@@ -34,4 +35,21 @@ def init (project):
     project.set_property('django_subpath', 'testproject')
     project.set_property('django_management_commands', {commands})
 
+"""
+
+BUILD_FILE_TEMPLATE_COVERAGE = """
+from pybuilder.core import use_plugin, init
+
+from pybuilder_django_enhanced_plugin import django_coverage
+use_plugin("python.core")
+
+
+name = "integration-test"
+default_task = ["django_coverage"]
+
+@init
+def init (project):
+    project.set_property('django_module', 'testproject')
+    project.set_property('django_apps', {apps})
+    project.set_property('django_subpath', 'testproject')
 """
