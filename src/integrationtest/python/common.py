@@ -53,3 +53,23 @@ def init (project):
     project.set_property('django_apps', {apps})
     project.set_property('django_subpath', 'testproject')
 """
+
+
+BUILD_FILE_E2E = """
+from pybuilder.core import use_plugin, init
+
+from pybuilder_django_enhanced_plugin import django_e2e_tests
+use_plugin("python.core")
+
+
+name = "integration-test"
+default_task = ["django_e2e_tests"]
+
+@init
+def init (project):
+    project.set_property('django_module', 'testproject')
+    project.set_property('django_apps', {apps})
+    project.set_property('django_subpath', 'testproject')
+    project.set_property('django_fixtures', ['{{django_base_path}}/goodapp/fixtures/myfixture.json'])
+    project.set_property('django_e2e_test_commands', [['curl_test', 'curl', '127.0.0.1:8000']])
+"""
