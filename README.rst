@@ -15,7 +15,7 @@ Configure the plugin within your `init` function::
 
     @init
     def init(project):
-        project.set_property('django_module', 'myproject')
+        project.set_property('django_project', 'myproject')
         project.set_property('django_apps', ['myapp', 'myotherapp'])
         # you can store your django project and apps in a nested directory under the project src base
         project.set_property('django_subpath', 'nested/dir')

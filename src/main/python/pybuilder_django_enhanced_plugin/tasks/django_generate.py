@@ -40,6 +40,8 @@ def django_generate(project, logger):
     django_apps = project.get_property("django_apps", [])
     django_project = project.get_mandatory_property("django_project")
     base_path = get_django_path(project)
+    if not os.path.exists(base_path):
+        os.makedirs(base_path)
     generate_project(project, logger, django_project, base_path)
     cwd = os.getcwd()
     os.chdir(base_path)

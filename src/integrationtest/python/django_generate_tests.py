@@ -20,6 +20,7 @@ default_task = ["django_generate"]
 @init
 def init (project):
     project.set_property('django_project', 'testproject')
+    project.set_property('django_subpath', 'testproject')
     project.set_property('django_apps', {apps})
 
 """
@@ -31,9 +32,9 @@ class DjangoEnhancedPluginTest(IntegrationTestSupport):
         self.write_build_file(BUILD_FILE_TEMPLATE.format(apps=['app1', 'app2']))
         reactor = self.prepare_reactor()
         reactor.build()
-        self.assert_directory_exists('src/main/python/testproject')
-        self.assert_directory_exists('src/main/python/app1')
-        self.assert_directory_exists('src/main/python/app2')
+        self.assert_directory_exists('src/main/python/testproject/testproject')
+        self.assert_directory_exists('src/main/python/testproject/app1')
+        self.assert_directory_exists('src/main/python/testproject/app2')
 
 
 if __name__ == "__main__":
