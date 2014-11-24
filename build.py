@@ -4,7 +4,6 @@ use_plugin("python.core")
 use_plugin("python.integrationtest")
 use_plugin("python.install_dependencies")
 use_plugin("python.flake8")
-use_plugin("python.coverage")
 use_plugin("copy_resources")
 use_plugin("python.distutils")
 
@@ -21,15 +20,15 @@ authors = [Author("Mirko Rossini", "mirko.rossini@ymail.com"),
            ]
 url = "https://github.com/MirkoRossini/pybuilder_django_enhanced_plugin"
 license = "BSD License"
-version = "0.0.4"
+version = "0.0.6"
 
 
 @init
 def set_properties(project):
-    project.build_depends_on("flake8")
+    #project.build_depends_on("flake8")
+    project.depends_on("django")
     project.set_property('integrationtest_inherit_environment', True)
-    project.set_property('coverage_break_build', False)
-
+    project.set_property('flake8_break_build', True)
     project.set_property("copy_resources_target", "$dir_dist")
     project.get_property("copy_resources_glob").append("LICENSE")
     project.get_property("copy_resources_glob").append("MANIFEST.in")

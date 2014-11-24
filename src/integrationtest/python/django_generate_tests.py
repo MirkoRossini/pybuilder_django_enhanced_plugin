@@ -1,42 +1,39 @@
+import os
+
 __author__ = 'Mirko Rossini'
 
 import unittest
 from integrationtest_support import IntegrationTestSupport
-from pybuilder.errors import BuildFailedException
 from common import BUILD_FILE_TEMPLATE
 
 
 BUILD_FILE_TEMPLATE = """
 from pybuilder.core import use_plugin, init
 
-from pybuilder_django_enhanced_plugin import django_test
+from pybuilder_django_enhanced_plugin import django_generate
 use_plugin("python.core")
 
 
 name = "integration-test"
-default_task = ["django_test"]
+default_task = ["django_generate"]
 
 @init
 def init (project):
     project.set_property('django_project', 'testproject')
     project.set_property('django_apps', {apps})
-    project.set_property('django_subpath', 'testproject')
 
 """
 
 
 class DjangoEnhancedPluginTest(IntegrationTestSupport):
     def test_django_test(self):
-        self.write_build_file(BUILD_FILE_TEMPLATE.format(apps=['testapp']))
+        os.makedirs(self.full_path('src/main/python/'))
+        self.write_build_file(BUILD_FILE_TEMPLATE.format(apps=['app1', 'app2']))
         reactor = self.prepare_reactor()
-        try:
-            reactor.build()
-            raise self.failureException("Build should fail due to project missing, but it's successful")
-        except BuildFailedException:
-            # We know tests are failing
-            pass
-            # self.rm_tmp_dir()
-
+        reactor.build()
+        self.assert_directory_exists('src/main/python/testproject')
+        self.assert_directory_exists('src/main/python/app1')
+        self.assert_directory_exists('src/main/python/app2')
 
 
 if __name__ == "__main__":
