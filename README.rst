@@ -72,6 +72,7 @@ Edit build.py::
 
 Generate the django project and start using django_enhanced_plugin::
 
+    pyb install_dependencies
     pyb django_generate
     pyb django_test
     # edit the project's settings.py file and add the apps to the list of installed apps
