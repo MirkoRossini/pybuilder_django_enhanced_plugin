@@ -73,6 +73,42 @@ def init (project):
 """
 
 
+BUILD_FILE_TEMPLATE_MIGRATION = """
+from pybuilder.core import use_plugin, init
+
+from pybuilder_django_enhanced_plugin import django_migrate, django_makemigrations
+use_plugin("python.core")
+
+
+name = "integration-test"
+default_task = ["django_makemigrations", "django_migrate"]
+
+@init
+def init (project):
+    project.set_property('django_project', 'testproject')
+    project.set_property('django_apps', {apps})
+    project.set_property('django_subpath', 'testproject')
+"""
+
+
+BUILD_FILE_TEMPLATE_SYNCDB = """
+from pybuilder.core import use_plugin, init
+
+from pybuilder_django_enhanced_plugin import django_syncdb
+use_plugin("python.core")
+
+
+name = "integration-test"
+default_task = ["django_syncdb"]
+
+@init
+def init (project):
+    project.set_property('django_project', 'testproject')
+    project.set_property('django_apps', {apps})
+    project.set_property('django_subpath', 'testproject')
+"""
+
+
 BUILD_FILE_TEMPLATE_COVERAGE_AUTO = """
 from pybuilder.core import use_plugin, init
 

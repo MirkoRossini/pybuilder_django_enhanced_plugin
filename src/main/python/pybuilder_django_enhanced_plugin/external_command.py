@@ -4,14 +4,16 @@ from pybuilder.utils import read_file
 from pybuilder.plugins.python.python_plugin_helper import as_list, execute_command, log_report
 import subprocess
 import signal
+import sys
 
 
 def spawn_process(command_and_arguments, out_file, error_file, env=None, cwd=None,
-                                  shell=False):
+                  shell=False):
     return subprocess.Popen(
         command_and_arguments,
         stdout=out_file,
         stderr=error_file,
+        stdin=sys.stdin,
         env=env,
         cwd=cwd,
         shell=shell,
@@ -89,7 +91,7 @@ class EnhancedExternalCommandBuilder(ExternalCommandBuilder):
             self.report_file.flush()
             self.report_file.close()
             report_lines = read_file(self.report_file.name)
-            report_file_name=self.report_file.name
+            report_file_name = self.report_file.name
             return report_file_name, report_lines
         return "", ""
 

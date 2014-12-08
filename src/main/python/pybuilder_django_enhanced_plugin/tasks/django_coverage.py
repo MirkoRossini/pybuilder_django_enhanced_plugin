@@ -64,4 +64,3 @@ def django_coverage(project, logger):
     if coverage_too_low and project.get_property("coverage_break_build", False):
         raise BuildFailedException("Coverage too low in django project")
     return 0
-

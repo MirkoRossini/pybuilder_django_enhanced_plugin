@@ -1,5 +1,4 @@
 from time import sleep
-from pybuilder.utils import execute_command
 import sys
 from pybuilder_django_enhanced_plugin.tasks.common import get_django_path, get_django_command_args, run_project_command
 
@@ -62,7 +61,6 @@ def django_e2e_tests(project, logger):
             raise BuildFailedException("Commands in django_e2e_test_commands must have at least 2 args "
                                        "(the first being the name of the command)")
         command_name = "django_e2e_test_command_" + args[0]
-        #command_result = run_django_manage_command(project, logger, command_name, args)
         command_result = run_project_command(project, logger, command_name, args[2:], args[1])
         if command_result.exit_code != 0:
             error_message = ''.join(command_result.error_report_lines)

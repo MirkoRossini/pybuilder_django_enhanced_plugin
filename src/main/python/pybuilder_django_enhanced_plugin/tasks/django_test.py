@@ -7,12 +7,14 @@ __author__ = 'Mirko Rossini'
 use_plugin("python.core")
 use_plugin("python.unittest")
 
+
 @after(("run_unit_tests",), only_once=True)
 def run_django_test(project, logger):
     django_test(project, logger)
 
+
 @task
-@description("Uses django test ")
+@description("Runs django test ")
 @depends("prepare")
 def django_test(project, logger):
     args = get_test_command(project)

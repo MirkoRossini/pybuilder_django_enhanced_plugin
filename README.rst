@@ -36,12 +36,15 @@ Installing pybuilder_django_enhanced_plugin exposes the following tasks:
    If any of the command returns a return code != 0 the build will break.
    Commands must be set in the form [[command_name, arg1, arg2], [command_name_1, arg3]]
 4. "django_generate": generates the project and apps if not already present
-5. "django_run_test_server": Runs a django server
+5. "django_runserver": Runs a django server
 6. "django_run_test_server": Runs a django testserver with the fixtures provided in 'django_fixtures'
-7. "django_e2e_tests": starts a test server and runs a list of commands provided in the property
-   'django_management_commands'.
-   django_management_commands is a list of lists. The first element of the list is the name of the command,
-   the rest of the elements represent the actual command (e.g. [['curl_test', 'curl', '127.0.0.1:8000']] )
+7. "django_syncdb": Runs the syncdb django management command
+8. "django_migrate": Runs the migrate django management command
+9. "django_makemigrations": Runs the makemigrations django management command
+10. "django_e2e_tests": starts a test server and runs a list of commands provided in the property
+    'django_management_commands'.
+    django_management_commands is a list of lists. The first element of the list is the name of the command,
+    the rest of the elements represent the actual command (e.g. [['curl_test', 'curl', '127.0.0.1:8000']] )
 
 
 Quickstart
