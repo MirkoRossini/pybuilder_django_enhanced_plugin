@@ -32,7 +32,7 @@ def django_makemigrations(project, logger):
 @description("Runs django migrate")
 @depends("prepare")
 def django_migrate(project, logger):
-    args = ['makemigrations']
+    args = ['migrate']
     command_result = run_django_manage_command(project, logger, 'django_migrate', args)
     if command_result.exit_code != 0:
         error_message = ''.join(command_result.error_report_lines)
