@@ -1,10 +1,15 @@
 import os
+import pipes
 from pybuilder.pluginhelper.external_command import ExternalCommandBuilder, ExternalCommandResult
 from pybuilder.utils import read_file
 from pybuilder.plugins.python.python_plugin_helper import as_list, execute_command, log_report
 import subprocess
 import signal
 import sys
+
+
+def quote_command(command):
+    return ' '.join(pipes.quote(s) for s in command)
 
 
 def spawn_process(command_and_arguments, out_file, error_file, env=None, cwd=None,
@@ -34,7 +39,7 @@ def execute_command_in_background(command_and_arguments, out_file, error_file, e
 def execute_tool(project, name, report_name, command_and_arguments, logger=None):
     command = as_list(command_and_arguments)
     report_file = project.expand_path("$dir_reports/{0}".format(report_name))
-    logger.info("Running command: {}".format(command))
+    logger.info("Running command: {}".format(quote_command(command)))
 
     execution_result = execute_command(command, report_file), report_file
     report_file = execution_result[1]
@@ -69,7 +74,7 @@ class EnhancedExternalCommandBuilder(ExternalCommandBuilder):
         command = as_list(self.parts)
         self.report_file = open(self.project.expand_path("$dir_reports/{0}".format(report_name)), 'w')
         self.error_report_file = open('{0}.err'.format(self.report_file.name), 'w')
-        logger.info("Running command in background: {}".format(command))
+        logger.info("Running command in background: {}".format(quote_command(command)))
         self.process = execute_command_in_background(
             command_and_arguments=command,
             out_file=self.report_file,
@@ -78,7 +83,7 @@ class EnhancedExternalCommandBuilder(ExternalCommandBuilder):
 
     def run_with_output(self, logger, output_file):
         command = as_list(self.parts)
-        logger.info("Running command writing to stout: {}".format(command))
+        logger.info("Running command writing to stout: {}".format(quote_command(command)))
         self.process = execute_command_in_background(
             command_and_arguments=command,
             out_file=output_file,

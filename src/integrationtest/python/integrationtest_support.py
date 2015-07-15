@@ -87,11 +87,17 @@ class IntegrationTestSupport(unittest.TestCase):
         full_path = self.full_path(name)
         self.assertEquals(0, os.path.getsize(full_path), msg="File %s is not empty." % full_path)
 
+    def assert_file_not_empty(self, name):
+        self.assert_file_exists(name)
+        full_path = self.full_path(name)
+        self.assertGreater(os.path.getsize(full_path), 0, msg="File %s is empty." % full_path)
+
     def assert_file_contains(self, name, expected_content_part):
         full_path = self.full_path(name)
         with open(full_path) as file:
             content = file.read()
-            self.assertTrue(expected_content_part in content)
+            self.assertTrue(expected_content_part in content, "{} does not contain {}".format(full_path,
+                                                                                              expected_content_part))
 
     def assert_file_content(self, name, expected_file_content):
         if expected_file_content == "":

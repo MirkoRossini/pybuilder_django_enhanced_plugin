@@ -20,13 +20,14 @@ authors = [Author("Mirko Rossini", "mirko.rossini@ymail.com"),
            ]
 url = "https://github.com/MirkoRossini/pybuilder_django_enhanced_plugin"
 license = "BSD License"
-version = "0.0.7"
+version = "0.0.8"
 
 
 @init
 def set_properties(project):
     project.build_depends_on("flake8")
     project.depends_on("django")
+    project.build_depends_on("coverage")
     project.set_property('integrationtest_inherit_environment', True)
     project.set_property('flake8_break_build', True)
     project.set_property("copy_resources_target", "$dir_dist")

@@ -17,8 +17,8 @@ class DjangoEnhancedPluginTest(IntegrationTestSupport):
         self.assert_file_exists('target/reports/django_makemigrations.err')
         self.assert_file_exists('target/reports/django_migrate')
         self.assert_file_exists('target/reports/django_migrate.err')
-        self.assert_file_contains('target/reports/django_migrate', 'No changes')
-        self.assert_file_contains('target/reports/django_makemigrations', 'No changes')
+        self.assert_file_not_empty('target/reports/django_migrate')
+        self.assert_file_not_empty('target/reports/django_makemigrations')
 
 
 if __name__ == "__main__":

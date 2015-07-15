@@ -10,7 +10,7 @@ def get_test_command(project):
     :return:
     """
     django_apps = project.get_mandatory_property("django_apps")
-    args = ['test', ] + django_apps
+    args = ['test', '--noinput'] + django_apps
     return args
 
 

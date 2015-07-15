@@ -11,4 +11,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print("AAaaaaaaaa", args, options)
-        print("Command called with argument: {}".format(args[0]))
+        print("Command called with argument: {}".format(options['argument'][0]))

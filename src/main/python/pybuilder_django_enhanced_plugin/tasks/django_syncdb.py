@@ -14,7 +14,7 @@ def run_django_syncdb(project, logger):
 @description("Runs django syncdb")
 @depends("prepare")
 def django_syncdb(project, logger):
-    args = ['syncdb']
+    args = ['syncdb', '--noinput']
     args += get_django_command_args(project)
     from django.core.management import execute_from_command_line
     logger.info("Running django syncdb {} ".format(args))
