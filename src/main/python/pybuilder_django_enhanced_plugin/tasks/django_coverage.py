@@ -11,6 +11,7 @@ use_plugin("analysis")
 
 REMOVE_INITIAL_DOT_REGEX = re.compile(r'^\.')
 
+
 @after(("analyze", "verify"), only_once=True)
 def verify_django_coverage(project, logger):
     django_coverage(project, logger)
