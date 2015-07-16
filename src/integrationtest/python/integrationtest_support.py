@@ -99,6 +99,13 @@ class IntegrationTestSupport(unittest.TestCase):
             self.assertTrue(expected_content_part in content, "{} does not contain {}".format(full_path,
                                                                                               expected_content_part))
 
+    def assert_file_does_not_contain(self, name, expected_content_part):
+        full_path = self.full_path(name)
+        with open(full_path) as file:
+            content = file.read()
+            self.assertFalse(expected_content_part in content, "{} does contains {}".format(full_path,
+                                                                                            expected_content_part))
+
     def assert_file_content(self, name, expected_file_content):
         if expected_file_content == "":
             self.assert_file_empty(name)

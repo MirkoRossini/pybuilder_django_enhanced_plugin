@@ -70,6 +70,8 @@ def init (project):
     project.set_property('django_project', 'testproject')
     project.set_property('django_apps', {apps})
     project.set_property('django_subpath', 'testproject')
+    project.set_property('coverage_break_build', True)
+    project.set_property('coverage_exceptions', ['testapp.tests'])
 """
 
 
