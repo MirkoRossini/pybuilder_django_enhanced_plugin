@@ -32,7 +32,7 @@ Installing pybuilder_django_enhanced_plugin exposes the following tasks:
    Can be called as a task, but also hooks itself to the "run_unit_tests" phase of the analyze lifecycle.
 2. "django_coverage": runs coverage on the tests of all the apps in 'django_apps'.
    You can set the behaviour of the coverage script by using the coverage plugin settings.
-3. "django_management_commands": Runs common commands.
+3. "django_run_management_commands": Runs common commands.
    If any of the command returns a return code != 0 the build will break.
    Commands must be set in the form [[command_name, arg1, arg2], [command_name_1, arg3]]
 4. "django_generate": generates the project and apps if not already present
