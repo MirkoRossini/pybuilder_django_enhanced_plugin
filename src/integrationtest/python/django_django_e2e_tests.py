@@ -7,7 +7,7 @@ from common import BUILD_FILE_E2E
 
 
 class DjangoEnhancedPluginTest(IntegrationTestSupport):
-    def test_django_test(self):
+    def test_django_e2e_test(self):
         # self.set_tmp_dir()
         self.write_build_file(BUILD_FILE_E2E.format(apps=['goodapp']))
         shutil.copytree('src/integrationtest/resources/testproject/', self.full_path('src/main/python/testproject/'))

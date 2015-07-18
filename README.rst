@@ -42,8 +42,8 @@ Installing pybuilder_django_enhanced_plugin exposes the following tasks:
 8. "django_migrate": Runs the migrate django management command
 9. "django_makemigrations": Runs the makemigrations django management command
 10. "django_e2e_tests": starts a test server and runs a list of commands provided in the property
-    'django_management_commands'.
-    django_management_commands is a list of lists. The first element of the list is the name of the command,
+    'django_e2e_test_commands'.
+    django_e2e_test_commands is a list of lists. The first element of the list is the name of the command,
     the rest of the elements represent the actual command (e.g. [['curl_test', 'curl', '127.0.0.1:8000']] )
 
 
